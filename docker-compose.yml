@@ -1,0 +1,15 @@
+version: "3"
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: twitter
+      MYSQL_USER: "twitter_user"
+      MYSQL_PASSWORD: "password"
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    command: >
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+    ports:
+      - 3306:3306
