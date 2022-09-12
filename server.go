@@ -4,11 +4,10 @@ import (
 	"echo-twitter-clone/model"
 	"net/http"
 
-	"gorm.io/driver/mysql"
-	"gorm.io/gorm"
-
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
 func main() {
@@ -19,9 +18,17 @@ func main() {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
-	// Initialize DB
-	db := dbInit()
+	// Connecting to a Database
+	dsn := "twitter_user:password@tcp(127.0.0.1:3306)/twitter?charset=utf8mb4&parseTime=True&loc=Local"
+	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	if err != nil {
+		panic("failed to connect database")
+	}
+	// Migrate the schema
 	db.AutoMigrate(&model.Post{})
+
+	// // Create
+	// db.Create(&model.Post{From: "Fumiya Nakamura", Message: "Hello!"})
 
 	// Routes
 	e.GET("/", func(c echo.Context) error {
@@ -30,14 +37,4 @@ func main() {
 
 	// Start Server
 	e.Logger.Fatal(e.Start(":1323"))
-}
-
-// handler
-func dbInit() *gorm.DB {
-	dsn := "twitter_user:password@tcp(127.0.0.1:3306)/twitter?charset=utf8mb4&parseTime=true"
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
-	if err != nil {
-		panic("failed to connect database")
-	}
-	return db
 }
