@@ -15,5 +15,5 @@ Browse to http://localhost:1323 and you should see 'Hello, this is a Twitter clo
 
 ### Post a message
 ```
-$ curl -d "message=Hi!" http://localhost:1323/posts
+$ curl -d "message=first message" http://localhost:1323/posts
 ```
