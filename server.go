@@ -34,6 +34,14 @@ func main() {
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, this is a Twitter clone!")
 	})
+	e.POST("/posts", func(c echo.Context) error {
+		message := c.FormValue("message")
+		if message == "" {
+			return &echo.HTTPError{Code: http.StatusBadRequest, Message: "invalid to or message fields"}
+		}
+		db.Create(&model.Post{Message: message})
+		return nil
+	})
 
 	// Start Server
 	e.Logger.Fatal(e.Start(":1323"))
