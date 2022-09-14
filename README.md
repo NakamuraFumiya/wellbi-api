@@ -18,3 +18,8 @@ Browse to http://localhost:1323 and you should see 'Hello, this is a Twitter clo
 ```
 $ curl -d "message=first message" http://localhost:1323/posts
 ```
+
+### Read all message
+```
+$ curl http://localhost:1323/posts
+```

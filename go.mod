@@ -3,6 +3,7 @@ module echo-twitter-clone
 go 1.19
 
 require (
+	github.com/ant0ine/go-json-rest v3.3.2+incompatible // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
 	github.com/globalsign/mgo v0.0.0-20181015135952-eeefdecb41b8 // indirect
 	github.com/go-sql-driver/mysql v1.6.0 // indirect

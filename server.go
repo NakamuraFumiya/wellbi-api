@@ -28,6 +28,7 @@ func main() {
 		return c.String(http.StatusOK, "Hello, this is a Twitter clone!")
 	})
 	e.POST("/posts", createPost)
+	e.GET("/posts", fetchPost)
 
 	// Start Server
 	e.Logger.Fatal(e.Start(":1323"))
@@ -50,4 +51,11 @@ func createPost(c echo.Context) error {
 	}
 	db.Create(&model.Post{Message: message})
 	return nil
+}
+
+func fetchPost(c echo.Context) error {
+	var posts []model.Post
+	db := connectDB()
+	db.Find(&posts)
+	return c.JSON(http.StatusOK, posts)
 }
