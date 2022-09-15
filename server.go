@@ -30,6 +30,7 @@ func main() {
 	e.POST("/posts", createPost)
 	e.GET("/posts", readPostAll)
 	e.GET("/posts/:id", readPostDetail)
+	e.PUT("/posts/:id", updatePost)
 
 	// Start Server
 	e.Logger.Fatal(e.Start(":1323"))
@@ -70,4 +71,10 @@ func readPostDetail(c echo.Context) error {
 		return &echo.HTTPError{Code: http.StatusBadRequest, Message: "post does not exist"}
 	}
 	return c.JSON(http.StatusOK, post)
+}
+
+func updatePost(c echo.Context) error {
+	db := connectDB()
+	db.Model(&model.Post{}).Where("id = ?", c.Param("id")).Update("message", c.FormValue("message"))
+	return nil
 }
