@@ -28,7 +28,8 @@ func main() {
 		return c.String(http.StatusOK, "Hello, this is a Twitter clone!")
 	})
 	e.POST("/posts", createPost)
-	e.GET("/posts", fetchPost)
+	e.GET("/posts", readPostAll)
+	e.GET("/posts/:id", readPostDetail)
 
 	// Start Server
 	e.Logger.Fatal(e.Start(":1323"))
@@ -53,9 +54,20 @@ func createPost(c echo.Context) error {
 	return nil
 }
 
-func fetchPost(c echo.Context) error {
+func readPostAll(c echo.Context) error {
 	var posts []model.Post
 	db := connectDB()
 	db.Find(&posts)
 	return c.JSON(http.StatusOK, posts)
+}
+
+func readPostDetail(c echo.Context) error {
+	var post model.Post
+	id := c.Param("id")
+	db := connectDB()
+	db.First(&post, id)
+	if post.ID == 0 {
+		return &echo.HTTPError{Code: http.StatusBadRequest, Message: "post does not exist"}
+	}
+	return c.JSON(http.StatusOK, post)
 }
