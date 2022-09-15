@@ -52,8 +52,11 @@ func createPost(c echo.Context) error {
 	if message == "" {
 		return &echo.HTTPError{Code: http.StatusBadRequest, Message: "invalid to or message fields"}
 	}
-	db.Create(&model.Post{Message: message})
-	return nil
+	post := model.Post{
+		Message: message,
+	}
+	db.Create(&post)
+	return c.JSON(http.StatusOK, post)
 }
 
 func readPostAll(c echo.Context) error {
@@ -79,11 +82,11 @@ func updatePost(c echo.Context) error {
 	db.Model(&model.Post{}).
 		Where("id = ?", c.Param("id")).
 		Update("message", c.FormValue("message"))
-	return nil
+	return c.String(http.StatusOK, "updated post id: "+c.Param("id")+"\n")
 }
 
 func deletePost(c echo.Context) error {
 	db := connectDB()
 	db.Delete(&model.Post{}, c.Param("id"))
-	return nil
+	return c.String(http.StatusOK, "deleted post id: "+c.Param("id")+"\n")
 }
