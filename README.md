@@ -14,7 +14,7 @@ $ go run server.go
 Browse to http://localhost:1323 and you should see 'Hello, this is a Twitter clone!' on the page.
 
 ## Usage
-### Post a message
+### Create a message
 ```
 $ curl -X POST -d "message=sample message" http://localhost:1323/posts
 ```
