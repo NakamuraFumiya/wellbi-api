@@ -68,9 +68,8 @@ func readPostAll(c echo.Context) error {
 
 func readPostDetail(c echo.Context) error {
 	var post model.Post
-	id := c.Param("id")
 	db := connectDB()
-	db.First(&post, id)
+	db.First(&post, c.Param("id"))
 	if post.ID == 0 {
 		return &echo.HTTPError{Code: http.StatusBadRequest, Message: "post does not exist"}
 	}
