@@ -31,6 +31,7 @@ func main() {
 	e.GET("/posts", readPostAll)
 	e.GET("/posts/:id", readPostDetail)
 	e.PUT("/posts/:id", updatePost)
+	e.DELETE("posts/:id", deletePost)
 
 	// Start Server
 	e.Logger.Fatal(e.Start(":1323"))
@@ -75,6 +76,14 @@ func readPostDetail(c echo.Context) error {
 
 func updatePost(c echo.Context) error {
 	db := connectDB()
-	db.Model(&model.Post{}).Where("id = ?", c.Param("id")).Update("message", c.FormValue("message"))
+	db.Model(&model.Post{}).
+		Where("id = ?", c.Param("id")).
+		Update("message", c.FormValue("message"))
+	return nil
+}
+
+func deletePost(c echo.Context) error {
+	db := connectDB()
+	db.Delete(&model.Post{}, c.Param("id"))
 	return nil
 }

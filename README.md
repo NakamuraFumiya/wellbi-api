@@ -33,3 +33,8 @@ $ curl -X GET http://localhost:1323/posts/1
 ```
 $ curl -X PUT -d "message=update message" http://localhost:1323/posts/1
 ```
+
+### Delete a message
+```
+$ curl -X DELETE http://localhost:1323/posts/1
+```
