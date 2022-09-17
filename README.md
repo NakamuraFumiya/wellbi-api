@@ -2,6 +2,18 @@
 A simple twitter clone using echo.
 
 ## Introduction
+### 
+First, set values in .env.sample
+
+Next, rename .env.sample to .env
+```
+cd ~/echo-twitter-clone 
+```
+
+```
+ mv .env.sample .env
+```
+
 ### Create a mysql container
 ```
 docker-compose up -d
