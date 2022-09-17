@@ -3,13 +3,15 @@ services:
   db:
     image: mysql:5.7
     environment:
-      MYSQL_DATABASE: twitter
-      MYSQL_USER: "twitter_user"
-      MYSQL_PASSWORD: "password"
+      MYSQL_DATABASE: $APP_DATABASE
+      MYSQL_USER: $APP_USER
+      MYSQL_PASSWORD: $APP_PASSWORD
       MYSQL_ROOT_PASSWORD: ""
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
     command: >
       --character-set-server=utf8mb4
       --collation-server=utf8mb4_general_ci
     ports:
-      - 3306:3306
+      - $APP_DB_PORT:3306
+    env_file:
+      - .env
