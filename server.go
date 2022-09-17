@@ -28,9 +28,7 @@ func main() {
 	db.AutoMigrate(&model.Post{})
 
 	// Routes
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, this is a Twitter clone!")
-	})
+	e.GET("/", hello)
 	e.POST("/posts", createPost)
 	e.GET("/posts", readPostAll)
 	e.GET("/posts/:id", readPostDetail)
@@ -52,6 +50,10 @@ func connectDB() *gorm.DB {
 		panic("failed to connect database")
 	}
 	return db
+}
+
+func hello(c echo.Context) error {
+	return c.String(http.StatusOK, "Hello, this is a Twitter clone!")
 }
 
 func createPost(c echo.Context) error {
