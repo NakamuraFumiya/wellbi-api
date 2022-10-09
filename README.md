@@ -1,8 +1,8 @@
-# echo-twitter-clone
+#### echo-twitter-clone
 A simple twitter clone using echo.
 
-## Introduction
-### 
+### Introduction
+#### 
 First, set values in .env.sample
 
 Next, rename .env.sample to .env
@@ -14,39 +14,39 @@ cd ~/echo-twitter-clone
  mv .env.sample .env
 ```
 
-### Create a mysql container
+#### Create a mysql container
 ```
 docker-compose up -d
 ```
 
-### Start server
+#### Start server
 ```
 go run server.go
 ```
 Browse to http://localhost:1323 and you should see 'Hello, this is a Twitter clone!' on the page.
 
-## Usage
-### Create a message
+### Usage
+##### Create a message
 ```
 curl -X POST -d "message=sample message" http://localhost:1323/posts
 ```
 
-### Read all message
+##### Read all message
 ```
 curl -X GET http://localhost:1323/posts
 ```
 
-### Read a message
+##### Read a message
 ```
 curl -X GET http://localhost:1323/posts/1
 ```
 
-### Update a message
+##### Update a message
 ```
 curl -X PUT -d "message=update message" http://localhost:1323/posts/1
 ```
 
-### Delete a message
+##### Delete a message
 ```
 curl -X DELETE http://localhost:1323/posts/1
 ```
