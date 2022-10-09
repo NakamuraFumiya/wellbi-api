@@ -3,6 +3,7 @@ package main
 import (
 	"echo-twitter-clone/config"
 	"echo-twitter-clone/core/domain/model"
+	"echo-twitter-clone/interactor"
 	"echo-twitter-clone/presentation/router"
 
 	"github.com/labstack/echo/v4"
@@ -23,7 +24,9 @@ func main() {
 	db.AutoMigrate(&model.Post{})
 
 	// Routes
-	router.SetRouter(e)
+	i := interactor.NewInteractor(db)
+	h := i.NewAppHandler()
+	router.SetRouter(e, h)
 
 	// Start Server
 	e.Logger.Fatal(e.Start(":1323"))
