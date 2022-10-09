@@ -1,7 +1,7 @@
 #### echo-twitter-clone
 A simple twitter clone using echo.
 
-### Introduction
+## Introduction
 #### 
 First, set values in .env.sample
 
@@ -25,7 +25,7 @@ go run server.go
 ```
 Browse to http://localhost:1323 and you should see 'Hello, this is a Twitter clone!' on the page.
 
-### Usage
+## Usage
 ##### Create a message
 ```
 curl -X POST -d "message=sample message" http://localhost:1323/posts
