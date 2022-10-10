@@ -1,14 +1,12 @@
 package model
 
 import (
-	"time"
+	"gorm.io/gorm"
 )
 
 type Post struct {
-	ID        uint
-	To        string
-	From      string
-	Message   string
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	gorm.Model
+	To      string
+	From    string
+	Message string
 }
