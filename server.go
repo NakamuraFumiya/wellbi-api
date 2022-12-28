@@ -4,10 +4,11 @@ import (
 	"echo-twitter-clone/config"
 	"echo-twitter-clone/core/domain/model"
 	"echo-twitter-clone/interactor"
-	"echo-twitter-clone/presentation/middleware"
+	middlewarepackage "echo-twitter-clone/presentation/middleware"
 	"echo-twitter-clone/presentation/router"
 
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 func main() {
@@ -15,7 +16,8 @@ func main() {
 	e := echo.New()
 
 	// Middleware
-	middleware.NewMiddleware(e)
+	middlewarepackage.NewMiddleware(e)
+	e.Use(middleware.CORS())
 
 	// Connecting to a Database
 	db := config.ConnectDB()
