@@ -42,7 +42,7 @@ func (h postHandler) GetPost(c echo.Context) error {
 func (h postHandler) CreatePost(c echo.Context) error {
 	post, err := h.PostUseCase.CreatePost(c)
 	if err != nil {
-		return echo.NewHTTPError(http.StatusInternalServerError, "post can not create")
+		return echo.NewHTTPError(http.StatusInternalServerError, err.Error())
 	}
 	return c.JSON(http.StatusOK, post)
 }
