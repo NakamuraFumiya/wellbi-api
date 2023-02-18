@@ -1,7 +1,7 @@
 package router
 
 import (
-	"echo-twitter-clone/presentation/controller"
+	"echo-twitter-clone/presentation/api/controller"
 	"net/http"
 
 	"github.com/labstack/echo/v4"

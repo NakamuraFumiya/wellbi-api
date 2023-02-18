@@ -1,4 +1,4 @@
-package controller
+package post
 
 import (
 	"echo-twitter-clone/core/usecase/post"
@@ -15,47 +15,47 @@ type PostController interface {
 	DeletePost(c echo.Context) error
 }
 
-type postHandler struct {
+type postController struct {
 	PostUseCase post.PostUseCase
 }
 
-func NewPostController(u post.PostUseCase) postHandler {
-	return postHandler{u}
+func NewPostController(u post.PostUseCase) postController {
+	return postController{u}
 }
 
-func (h postHandler) GetPosts(c echo.Context) error {
-	posts, err := h.PostUseCase.GetPosts(c)
+func (c postController) GetPosts(ctx echo.Context) error {
+	posts, err := c.PostUseCase.GetPosts(ctx)
 	if err != nil {
 		return echo.NewHTTPError(http.StatusNotFound, "posts does not exist")
 	}
-	return c.JSON(http.StatusOK, posts)
+	return ctx.JSON(http.StatusOK, posts)
 }
 
-func (h postHandler) GetPost(c echo.Context) error {
-	post, err := h.PostUseCase.GetPost(c)
+func (c postController) GetPost(ctx echo.Context) error {
+	post, err := c.PostUseCase.GetPost(ctx)
 	if err != nil {
 		return echo.NewHTTPError(http.StatusNotFound, "post does not exist")
 	}
-	return c.JSON(http.StatusOK, post)
+	return ctx.JSON(http.StatusOK, post)
 }
 
-func (h postHandler) CreatePost(c echo.Context) error {
-	post, err := h.PostUseCase.CreatePost(c)
+func (c postController) CreatePost(ctx echo.Context) error {
+	post, err := c.PostUseCase.CreatePost(ctx)
 	if err != nil {
 		return echo.NewHTTPError(http.StatusInternalServerError, err.Error())
 	}
-	return c.JSON(http.StatusOK, post)
+	return ctx.JSON(http.StatusOK, post)
 }
 
-func (h postHandler) UpdatePost(c echo.Context) error {
-	err := h.PostUseCase.UpdatePost(c)
+func (c postController) UpdatePost(ctx echo.Context) error {
+	err := c.PostUseCase.UpdatePost(ctx)
 	if err != nil {
 		return echo.NewHTTPError(http.StatusInternalServerError, "post can not update")
 	}
 	return nil
 }
 
-func (h postHandler) DeletePost(c echo.Context) error {
+func (h postController) DeletePost(c echo.Context) error {
 	err := h.PostUseCase.DeletePost(c)
 	if err != nil {
 		return echo.NewHTTPError(http.StatusInternalServerError, "post can not delete")
