@@ -1,7 +1,7 @@
-package handler
+package controller
 
 import (
-	"echo-twitter-clone/core/application/usecase/post"
+	"echo-twitter-clone/core/usecase/post"
 	"net/http"
 
 	"github.com/labstack/echo/v4"

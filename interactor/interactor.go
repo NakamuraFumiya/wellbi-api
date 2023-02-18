@@ -1,19 +1,21 @@
 package interactor
 
 import (
-	postusecase "echo-twitter-clone/core/application/usecase/post"
 	postrepository "echo-twitter-clone/core/domain/repository/post"
+	postusecase "echo-twitter-clone/core/usecase/post"
+	"echo-twitter-clone/infrastructure/persistence/gorm/handler"
 	"echo-twitter-clone/infrastructure/persistence/gorm/repository/post"
-	handler "echo-twitter-clone/presentation/handler"
+
+	"echo-twitter-clone/presentation/controller"
 
 	"gorm.io/gorm"
 )
 
 type Interactor interface {
-	NewAppHandler() handler.AppHandler
+	NewAppHandler() controller.AppHandler
 	NewPostRepository() postrepository.PostRepository
 	NewPostUseCase() postusecase.PostUseCase
-	NewPostHandler() handler.PostHandler
+	NewPostHandler() controller.PostHandler
 }
 
 type interactor struct {
@@ -25,23 +27,23 @@ func NewInteractor(Conn *gorm.DB) Interactor {
 }
 
 type appHandler struct {
-	handler.PostHandler
+	controller.PostHandler
 }
 
-func (i *interactor) NewAppHandler() handler.AppHandler {
+func (i *interactor) NewAppHandler() controller.AppHandler {
 	appHandler := &appHandler{}
 	appHandler.PostHandler = i.NewPostHandler()
 	return appHandler
 }
 
 func (i *interactor) NewPostRepository() postrepository.PostRepository {
-	return post.NewPostRepository(i.Conn)
+	return post.NewPostRepository(&handler.Handler{})
 }
 
 func (i *interactor) NewPostUseCase() postusecase.PostUseCase {
 	return postusecase.NewPostUseCase(i.NewPostRepository())
 }
 
-func (i *interactor) NewPostHandler() handler.PostHandler {
-	return handler.NewPostHandler(i.NewPostUseCase())
+func (i *interactor) NewPostHandler() controller.PostHandler {
+	return controller.NewPostHandler(i.NewPostUseCase())
 }

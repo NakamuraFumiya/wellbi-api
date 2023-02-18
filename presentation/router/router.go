@@ -1,13 +1,13 @@
 package router
 
 import (
-	"echo-twitter-clone/presentation/handler"
+	"echo-twitter-clone/presentation/controller"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
 )
 
-func SetRouter(e *echo.Echo, h handler.AppHandler) {
+func SetRouter(e *echo.Echo, h controller.AppHandler) {
 	// Routes
 	e.GET("/", hello)
 
