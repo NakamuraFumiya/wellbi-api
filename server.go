@@ -3,7 +3,7 @@ package main
 import (
 	"echo-twitter-clone/core/domain/model"
 	"echo-twitter-clone/infrastructure/persistence/gorm/handler"
-	"echo-twitter-clone/inject"
+	"echo-twitter-clone/presentation/api/inject"
 	middlewarepackage "echo-twitter-clone/presentation/middleware"
 	"echo-twitter-clone/presentation/router"
 
@@ -26,8 +26,7 @@ func main() {
 
 	// Routes
 	i := inject.Injector{}
-	h := i.NewAppController()
-	router.SetRouter(e, h)
+	router.SetRouter(e, i)
 
 	// Start Server
 	e.Logger.Fatal(e.Start(":1323"))
