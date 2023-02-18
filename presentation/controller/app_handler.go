@@ -1,5 +1,5 @@
 package controller
 
-type AppHandler interface {
-	PostHandler
+type AppController interface {
+	PostController
 }

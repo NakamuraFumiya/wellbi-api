@@ -7,7 +7,7 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func SetRouter(e *echo.Echo, h controller.AppHandler) {
+func SetRouter(e *echo.Echo, h controller.AppController) {
 	// Routes
 	e.GET("/", hello)
 

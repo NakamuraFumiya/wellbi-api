@@ -3,7 +3,7 @@ package main
 import (
 	"echo-twitter-clone/core/domain/model"
 	"echo-twitter-clone/infrastructure/persistence/gorm/handler"
-	"echo-twitter-clone/interactor"
+	"echo-twitter-clone/inject"
 	middlewarepackage "echo-twitter-clone/presentation/middleware"
 	"echo-twitter-clone/presentation/router"
 
@@ -25,8 +25,8 @@ func main() {
 	db.AutoMigrate(&model.Post{})
 
 	// Routes
-	i := interactor.NewInteractor(db)
-	h := i.NewAppHandler()
+	i := inject.Injector{}
+	h := i.NewAppController()
 	router.SetRouter(e, h)
 
 	// Start Server

@@ -7,7 +7,7 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-type PostHandler interface {
+type PostController interface {
 	GetPosts(c echo.Context) error
 	GetPost(c echo.Context) error
 	CreatePost(c echo.Context) error
@@ -19,7 +19,7 @@ type postHandler struct {
 	PostUseCase post.PostUseCase
 }
 
-func NewPostHandler(u post.PostUseCase) postHandler {
+func NewPostController(u post.PostUseCase) postHandler {
 	return postHandler{u}
 }
 
