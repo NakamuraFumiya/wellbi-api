@@ -1,28 +1,26 @@
 package post
 
 import (
-	"echo-twitter-clone/config"
 	"echo-twitter-clone/core/domain/model"
 	"echo-twitter-clone/core/domain/repository/post"
+	"echo-twitter-clone/infrastructure/persistence/gorm/handler"
 	"errors"
 
 	"github.com/labstack/echo/v4"
-	"gorm.io/gorm"
 )
 
 type PostRepository struct {
-	Conn *gorm.DB
+	handler *handler.Handler
 }
 
-func NewPostRepository(Conn *gorm.DB) post.PostRepository {
-	return &PostRepository{Conn}
+func NewPostRepository(handler *handler.Handler) post.PostRepository {
+	return &PostRepository{handler}
 }
 
 func (r *PostRepository) Fetch(c echo.Context) ([]model.Post, error) {
 	var posts []model.Post
-	db := config.ConnectDB()
 
-	if err := db.Find(&posts).Error; err != nil {
+	if err := r.handler.DB().Find(&posts).Error; err != nil {
 		return nil, err
 	}
 
@@ -31,9 +29,8 @@ func (r *PostRepository) Fetch(c echo.Context) ([]model.Post, error) {
 
 func (r *PostRepository) FetchByID(c echo.Context) (*model.Post, error) {
 	var post model.Post
-	db := config.ConnectDB()
 
-	if err := db.First(&post, c.Param("id")).Error; err != nil {
+	if err := r.handler.DB().First(&post, c.Param("id")).Error; err != nil {
 		return nil, err
 	}
 
@@ -41,7 +38,6 @@ func (r *PostRepository) FetchByID(c echo.Context) (*model.Post, error) {
 }
 
 func (r *PostRepository) Create(c echo.Context) (*model.Post, error) {
-	db := config.ConnectDB()
 	message := c.FormValue("message")
 	if message == "" {
 		return nil, errors.New("invalid to or message fields")
@@ -49,15 +45,14 @@ func (r *PostRepository) Create(c echo.Context) (*model.Post, error) {
 	post := model.Post{
 		Message: message,
 	}
-	if err := db.Create(&post).Error; err != nil {
+	if err := r.handler.DB().Create(&post).Error; err != nil {
 		return nil, err
 	}
 	return &post, nil
 }
 
 func (r *PostRepository) Update(c echo.Context) error {
-	db := config.ConnectDB()
-	if err := db.Model(&model.Post{}).
+	if err := r.handler.DB().Model(&model.Post{}).
 		Where("id = ?", c.Param("id")).
 		Update("message", c.FormValue("message")).Error; err != nil {
 		return err
@@ -66,8 +61,7 @@ func (r *PostRepository) Update(c echo.Context) error {
 }
 
 func (r *PostRepository) Delete(c echo.Context) error {
-	db := config.ConnectDB()
-	if err := db.Delete(&model.Post{}, c.Param("id")).Error; err != nil {
+	if err := r.handler.DB().Delete(&model.Post{}, c.Param("id")).Error; err != nil {
 		return err
 	}
 	return nil

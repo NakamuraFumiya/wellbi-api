@@ -1,8 +1,8 @@
 package main
 
 import (
-	"echo-twitter-clone/config"
 	"echo-twitter-clone/core/domain/model"
+	"echo-twitter-clone/infrastructure/persistence/gorm/handler"
 	"echo-twitter-clone/interactor"
 	middlewarepackage "echo-twitter-clone/presentation/middleware"
 	"echo-twitter-clone/presentation/router"
@@ -20,7 +20,7 @@ func main() {
 	e.Use(middleware.CORS())
 
 	// Connecting to a Database
-	db := config.ConnectDB()
+	db := handler.ConnectDB()
 	// Migrate the schema
 	db.AutoMigrate(&model.Post{})
 
