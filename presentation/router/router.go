@@ -10,11 +10,13 @@ import (
 func SetRouter(e *echo.Echo, h handler.AppHandler) {
 	// Routes
 	e.GET("/", hello)
-	e.POST("/posts", h.CreatePost)
-	e.GET("/posts", h.GetPosts)
-	e.GET("/posts/:id", h.GetPost)
-	e.PUT("/posts/:id", h.UpdatePost)
-	e.DELETE("posts/:id", h.DeletePost)
+
+	api := e.Group("/api")
+	api.GET("/posts", h.GetPosts)
+	api.POST("/posts", h.CreatePost)
+	api.GET("/posts/:id", h.GetPost)
+	api.PUT("/posts/:id", h.UpdatePost)
+	api.DELETE("posts/:id", h.DeletePost)
 }
 
 func hello(c echo.Context) error {

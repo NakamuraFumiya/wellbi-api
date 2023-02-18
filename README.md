@@ -28,25 +28,25 @@ Browse to http://localhost:1323 and you should see 'Hello, this is a Twitter clo
 ## Sample Request
 ##### Create a message
 ```
-curl -X POST -d "message=sample message" http://localhost:1323/posts
+curl -X POST -d "message=sample message" http://localhost:1323/api/posts
 ```
 
 ##### Read all message
 ```
-curl -X GET http://localhost:1323/posts
+curl -X GET http://localhost:1323/api/posts
 ```
 
 ##### Read a message
 ```
-curl -X GET http://localhost:1323/posts/1
+curl -X GET http://localhost:1323/api/posts/1
 ```
 
 ##### Update a message
 ```
-curl -X PUT -d "message=update message" http://localhost:1323/posts/1
+curl -X PUT -d "message=update message" http://localhost:1323/api/posts/1
 ```
 
 ##### Delete a message
 ```
-curl -X DELETE http://localhost:1323/posts/1
+curl -X DELETE http://localhost:1323/api/posts/1
 ```
