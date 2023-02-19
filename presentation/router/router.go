@@ -16,7 +16,7 @@ func SetRouter(e *echo.Echo, i inject.Injector) {
 	api.GET("/posts/:id", i.V1PostDetailController())
 	api.POST("/posts", i.V1PostCreateController())
 	api.PUT("/posts/:id", i.V1PostUpdateController())
-	api.DELETE("posts/:id", i.V1PostDeleteController())
+	api.DELETE("/posts/:id", i.V1PostDeleteController())
 }
 
 func hello(c echo.Context) error {

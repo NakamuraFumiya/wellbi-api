@@ -5,7 +5,6 @@ import (
 	"echo-twitter-clone/core/domain/repository/post"
 	"echo-twitter-clone/infrastructure/persistence/gorm/handler"
 	"errors"
-
 	"github.com/labstack/echo/v4"
 )
 
