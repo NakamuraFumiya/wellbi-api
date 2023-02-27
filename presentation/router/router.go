@@ -20,5 +20,5 @@ func SetRouter(e *echo.Echo, i inject.Injector) {
 }
 
 func hello(c echo.Context) error {
-	return c.String(http.StatusOK, "Hello, this is a Twitter clone!")
+	return c.String(http.StatusOK, "Hello, this is a wellbi-api!")
 }
