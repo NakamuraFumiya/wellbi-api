@@ -24,7 +24,7 @@ go run server.go
 ```
 Browse to http://localhost:1323 and you should see 'Hello, this is a wellbi-api!' on the page.
 
-## Sample Request
+## Request
 ##### Create a message
 ```
 curl -X POST -d "message=sample message" http://localhost:1323/api/posts
