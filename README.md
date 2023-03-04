@@ -1,5 +1,4 @@
-#### echo-twitter-clone
-A simple twitter clone using echo.
+#### wellbi-api
 
 ## Introduction
 #### 
@@ -7,7 +6,7 @@ First, set values in .env.sample
 
 Next, rename .env.sample to .env
 ```
-cd ~/echo-twitter-clone 
+cd ~/wellbi-api 
 ```
 
 ```
@@ -23,7 +22,7 @@ docker-compose up -d
 ```
 go run server.go
 ```
-Browse to http://localhost:1323 and you should see 'Hello, this is a Twitter clone!' on the page.
+Browse to http://localhost:1323 and you should see 'Hello, this is a wellbi-api!' on the page.
 
 ## Sample Request
 ##### Create a message
