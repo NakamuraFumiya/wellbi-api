@@ -37,11 +37,16 @@ func (r *PostRepository) FetchByID(c echo.Context) (*model.Post, error) {
 }
 
 func (r *PostRepository) Create(c echo.Context) (*model.Post, error) {
+	title := c.FormValue("title")
+	if title == "" {
+		return nil, errors.New("invalid to or title fields")
+	}
 	message := c.FormValue("message")
 	if message == "" {
 		return nil, errors.New("invalid to or message fields")
 	}
 	post := model.Post{
+		Title:   title,
 		Message: message,
 	}
 	if err := r.handler.DB().Create(&post).Error; err != nil {
