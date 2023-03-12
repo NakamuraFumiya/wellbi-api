@@ -45,9 +45,17 @@ func (r *PostRepository) Create(c echo.Context) (*model.Post, error) {
 	if message == "" {
 		return nil, errors.New("invalid to or message fields")
 	}
+	var imageURL *string
+	formImageURL := c.FormValue("imageURL")
+	if formImageURL == "" {
+		imageURL = nil
+	} else {
+		imageURL = &formImageURL
+	}
 	post := model.Post{
-		Title:   title,
-		Message: message,
+		Title:    title,
+		Message:  message,
+		ImageURL: imageURL,
 	}
 	if err := r.handler.DB().Create(&post).Error; err != nil {
 		return nil, err

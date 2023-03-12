@@ -6,8 +6,9 @@ import (
 
 type Post struct {
 	gorm.Model
-	Title   string
-	Message string
-	To      string
-	From    string
+	Title    string
+	Message  string
+	ImageURL *string
+	To       string
+	From     string
 }
