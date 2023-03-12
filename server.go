@@ -1,11 +1,11 @@
 package main
 
 import (
-	"echo-twitter-clone/core/domain/model"
-	"echo-twitter-clone/infrastructure/persistence/gorm/handler"
-	"echo-twitter-clone/presentation/api/inject"
-	middlewarepackage "echo-twitter-clone/presentation/middleware"
-	"echo-twitter-clone/presentation/router"
+	"wellbi-api/core/domain/model"
+	"wellbi-api/infrastructure/persistence/gorm/handler"
+	"wellbi-api/presentation/api/inject"
+	middlewarepackage "wellbi-api/presentation/middleware"
+	"wellbi-api/presentation/router"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"

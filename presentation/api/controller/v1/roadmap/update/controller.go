@@ -1,8 +1,8 @@
 package update
 
 import (
-	"echo-twitter-clone/core/usecase/roadmap"
 	"net/http"
+	"wellbi-api/core/usecase/roadmap"
 
 	"github.com/labstack/echo/v4"
 )

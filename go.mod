@@ -1,6 +1,6 @@
-module echo-twitter-clone
+module wellbi-api
 
-go 1.19
+go 1.20
 
 require (
 	github.com/ant0ine/go-json-rest v3.3.2+incompatible // indirect

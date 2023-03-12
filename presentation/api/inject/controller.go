@@ -1,13 +1,13 @@
 package inject
 
 import (
-	roadmapusecase "echo-twitter-clone/core/usecase/roadmap"
-	v1roadmapcreate "echo-twitter-clone/presentation/api/controller/v1/roadmap/create"
-	v1roadmapdelete "echo-twitter-clone/presentation/api/controller/v1/roadmap/delete"
-	v1roadmapdetail "echo-twitter-clone/presentation/api/controller/v1/roadmap/detail"
-	v1roadmaplist "echo-twitter-clone/presentation/api/controller/v1/roadmap/list"
-	v1roadmapupdate "echo-twitter-clone/presentation/api/controller/v1/roadmap/update"
 	"github.com/labstack/echo/v4"
+	roadmapusecase "wellbi-api/core/usecase/roadmap"
+	v1roadmapcreate "wellbi-api/presentation/api/controller/v1/roadmap/create"
+	v1roadmapdelete "wellbi-api/presentation/api/controller/v1/roadmap/delete"
+	v1roadmapdetail "wellbi-api/presentation/api/controller/v1/roadmap/detail"
+	v1roadmaplist "wellbi-api/presentation/api/controller/v1/roadmap/list"
+	v1roadmapupdate "wellbi-api/presentation/api/controller/v1/roadmap/update"
 )
 
 // V1Controllerへの依存注入

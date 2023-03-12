@@ -1,8 +1,8 @@
 package router
 
 import (
-	"echo-twitter-clone/presentation/api/inject"
 	"net/http"
+	"wellbi-api/presentation/api/inject"
 
 	"github.com/labstack/echo/v4"
 )

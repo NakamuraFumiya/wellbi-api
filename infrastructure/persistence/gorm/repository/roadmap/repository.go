@@ -1,11 +1,11 @@
 package roadmap
 
 import (
-	"echo-twitter-clone/core/domain/model"
-	"echo-twitter-clone/core/domain/repository/roadmap"
-	"echo-twitter-clone/infrastructure/persistence/gorm/handler"
 	"errors"
 	"github.com/labstack/echo/v4"
+	"wellbi-api/core/domain/model"
+	"wellbi-api/core/domain/repository/roadmap"
+	"wellbi-api/infrastructure/persistence/gorm/handler"
 )
 
 type RoadmapRepository struct {

@@ -1,7 +1,7 @@
 package roadmap
 
 import (
-	"echo-twitter-clone/core/domain/model"
+	"wellbi-api/core/domain/model"
 
 	"github.com/labstack/echo/v4"
 )

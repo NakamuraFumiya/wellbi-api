@@ -1,9 +1,9 @@
 package inject
 
 import (
-	roadmaprepository "echo-twitter-clone/core/domain/repository/roadmap"
-	"echo-twitter-clone/infrastructure/persistence/gorm/handler"
-	"echo-twitter-clone/infrastructure/persistence/gorm/repository/roadmap"
+	roadmaprepository "wellbi-api/core/domain/repository/roadmap"
+	"wellbi-api/infrastructure/persistence/gorm/handler"
+	"wellbi-api/infrastructure/persistence/gorm/repository/roadmap"
 )
 
 func (i *Injector) NewRoadmapRepository() roadmaprepository.RoadmapRepository {
