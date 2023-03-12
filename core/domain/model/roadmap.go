@@ -1,7 +1,7 @@
 package model
 
 import (
-	"database/sql"
+	"gorm.io/gorm"
 	"time"
 )
 
@@ -13,5 +13,5 @@ type Roadmap struct {
 	ImageURL  *string
 	CreatedAt time.Time
 	UpdatedAt time.Time
-	DeletedAt sql.NullTime `gorm:"index"`
+	DeletedAt gorm.DeletedAt `gorm:"index"`
 }
