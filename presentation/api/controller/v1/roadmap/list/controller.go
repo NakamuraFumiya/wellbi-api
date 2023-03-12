@@ -1,22 +1,22 @@
 package list
 
 import (
-	"echo-twitter-clone/core/usecase/post"
+	"echo-twitter-clone/core/usecase/roadmap"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
 )
 
 type Controller struct {
-	PostUseCase post.PostUseCase
+	RoadmapUseCase roadmap.RoadmapUseCase
 }
 
-func NewController(useCase post.PostUseCase) Controller {
+func NewController(useCase roadmap.RoadmapUseCase) Controller {
 	return Controller{useCase}
 }
 
-func (c Controller) GetPosts(ctx echo.Context) error {
-	posts, err := c.PostUseCase.GetPosts(ctx)
+func (c Controller) GetRoadmaps(ctx echo.Context) error {
+	posts, err := c.RoadmapUseCase.GetRoadmaps(ctx)
 	if err != nil {
 		return echo.NewHTTPError(http.StatusNotFound, "posts does not exist")
 	}

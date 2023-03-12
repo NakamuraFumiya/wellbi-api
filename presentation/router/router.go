@@ -12,11 +12,11 @@ func SetRouter(e *echo.Echo, i inject.Injector) {
 	e.GET("/", hello)
 
 	api := e.Group("/api")
-	api.GET("/posts", i.V1PostListController())
-	api.GET("/posts/:id", i.V1PostDetailController())
-	api.POST("/posts", i.V1PostCreateController())
-	api.PUT("/posts/:id", i.V1PostUpdateController())
-	api.DELETE("/posts/:id", i.V1PostDeleteController())
+	api.GET("/posts", i.V1RoadmapListController())
+	api.GET("/posts/:id", i.V1RoadmapDetailController())
+	api.POST("/posts", i.V1RoadmapCreateController())
+	api.PUT("/posts/:id", i.V1RoadmapUpdateController())
+	api.DELETE("/posts/:id", i.V1RoadmapDeleteController())
 }
 
 func hello(c echo.Context) error {

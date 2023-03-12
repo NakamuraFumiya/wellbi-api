@@ -1,11 +1,11 @@
 package inject
 
 import (
-	postrepository "echo-twitter-clone/core/domain/repository/post"
+	roadmaprepository "echo-twitter-clone/core/domain/repository/roadmap"
 	"echo-twitter-clone/infrastructure/persistence/gorm/handler"
-	"echo-twitter-clone/infrastructure/persistence/gorm/repository/post"
+	"echo-twitter-clone/infrastructure/persistence/gorm/repository/roadmap"
 )
 
-func (i *Injector) NewPostRepository() postrepository.PostRepository {
-	return post.NewPostRepository(&handler.Handler{})
+func (i *Injector) NewRoadmapRepository() roadmaprepository.RoadmapRepository {
+	return roadmap.NewRoadmapRepository(&handler.Handler{})
 }
