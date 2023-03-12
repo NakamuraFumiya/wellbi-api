@@ -19,7 +19,7 @@ func NewRoadmapRepository(handler *handler.Handler) roadmap.RoadmapRepository {
 func (r *RoadmapRepository) Fetch(c echo.Context) ([]model.Roadmap, error) {
 	var roadmaps []model.Roadmap
 
-	if err := r.handler.DB().Find(&roadmaps).Error; err != nil {
+	if err := r.handler.DB().Order("id desc").Find(&roadmaps).Error; err != nil {
 		return nil, err
 	}
 

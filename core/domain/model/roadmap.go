@@ -1,14 +1,17 @@
 package model
 
 import (
-	"gorm.io/gorm"
+	"database/sql"
+	"time"
 )
 
 type Roadmap struct {
-	gorm.Model
-	Title    string
-	Message  string
-	ImageURL *string
-	To       string
-	From     string
+	//gorm.Model
+	ID        uint `gorm:"primarykey"`
+	Title     string
+	Message   string
+	ImageURL  *string
+	CreatedAt time.Time
+	UpdatedAt time.Time
+	DeletedAt sql.NullTime `gorm:"index"`
 }
