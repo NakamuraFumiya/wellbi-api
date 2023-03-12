@@ -22,7 +22,7 @@ func main() {
 	// Connecting to a Database
 	db := handler.ConnectDB()
 	// Migrate the schema
-	db.AutoMigrate(&model.Post{})
+	db.AutoMigrate(&model.Roadmap{})
 
 	// Routes
 	i := inject.Injector{}

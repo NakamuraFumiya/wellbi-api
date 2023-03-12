@@ -4,7 +4,7 @@ import (
 	"gorm.io/gorm"
 )
 
-type Post struct {
+type Roadmap struct {
 	gorm.Model
 	Title    string
 	Message  string
