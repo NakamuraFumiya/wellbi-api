@@ -11,7 +11,7 @@ func SetRouter(e *echo.Echo, i inject.Injector) {
 	// Routes
 	e.GET("/", hello)
 
-	api := e.Group("api")
+	api := e.Group("/api")
 	api.GET("/posts", i.V1RoadmapListController())
 	api.GET("/posts/:id", i.V1RoadmapDetailController())
 	api.POST("/posts", i.V1RoadmapCreateController())
