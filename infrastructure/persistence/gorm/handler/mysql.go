@@ -23,7 +23,7 @@ func (handler *Handler) DB() *gorm.DB {
 		"%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
 		os.Getenv("APP_USER"),
 		os.Getenv("APP_PASSWORD"),
-		os.Getenv("APP_HOST_URL"),
+		os.Getenv("APP_ADDRESS"),
 		os.Getenv("APP_DB_PORT"),
 		os.Getenv("APP_DATABASE"),
 	)
